@@ -76,4 +76,7 @@ public class SimpleXPathTests {
     void testInfoParagraph() {
         $x("//p[@class='info-text'][1]").shouldHave(text("Это первый информационный текст."));
     }
-}
+   }
+
+
+
