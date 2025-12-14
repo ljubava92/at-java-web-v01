@@ -11,7 +11,9 @@ public class AlertsTests {
         open("https://practice-automation.com/popups/");
         $("#alert").click();
         sleep(2_000);
-        switchTo().alert().accept();
+        switchTo()
+                .alert()
+                .accept();
         sleep(2_000);
     }
     @Test
@@ -24,6 +26,7 @@ public class AlertsTests {
         sleep(2_000);
         alert.accept();
         sleep(2_000);
+
     }
     @Test
     void test03ConfirmCancel() {
@@ -59,5 +62,6 @@ public class AlertsTests {
         alert.dismiss();
         sleep(2_000);
     }
+
 }
 
