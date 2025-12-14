@@ -1,14 +1,17 @@
-package demo.part05;
+package work.part05;
 
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$x;
 
-@TestMethodOrder(MethodOrderer.MethodName.class)
+//@TestMethodOrder(MethodOrderer.MethodName.class)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @DisplayName("Тестовый набор FourthLoginTests - проверка аутентификации")
 public class FifthLoginTests {
     @BeforeAll
@@ -64,9 +67,12 @@ public class FifthLoginTests {
         $("#greeting").shouldBe(empty);
         $("#greeting").shouldNotBe(visible);
     }
-    @Tag("SmokeTest")
+
     @Test
     @DisplayName("03. Корректные логин и пароль - успешный вход в систему по нажатию клавиши Enter на клавиатуре")
+    @Order(1)
+    @Disabled
+    @Tag("SmokeTest")
     void test03_success_login_enter() {
         $("#username").sendKeys("standard_user");
         $("#password").sendKeys("secret_sauce");
@@ -95,6 +101,7 @@ public class FifthLoginTests {
 
     @Test
     @DisplayName("05. Некорректный логин, пароль от корректного логина - ошибка")
+    @Order(2)
     void test05_wrong_login_correct_password() {
         $("#username").sendKeys("incorrect_login");
         $("#password").sendKeys("secret_sauce");
@@ -125,6 +132,7 @@ public class FifthLoginTests {
 
     @Test
     @DisplayName("07. Проверить, что под заблокированным пользователем нельзя войти в систему")
+    @Order(4)
     void test07_error_blocked_user() {
         $("#username").sendKeys("locked_out_user");
         $("#password").sendKeys("secret_sauce");
@@ -138,6 +146,7 @@ public class FifthLoginTests {
 
     @Test
     @DisplayName("08. Пустой логин, пароль от корректного логина")
+    @Order(3)
     void test08_empty_login_correct_password() {
         $("#password").sendKeys("secret_sauce");
         $("#loginButton").click();
@@ -182,6 +191,24 @@ public class FifthLoginTests {
     void test11_asterisks_in_password() {
         $("#password").type("secret_sauce");
         $("#password").shouldHave(attribute("type","password"));
+    }
+    @ParameterizedTest ()
+    @ValueSource (strings = {"100", "2000", "йоцукен"})
+     void test01(String sum) {
+        open("https://slqa.ru/cases/fc/v01/");
+        $("name=sum").type(sum);
+    }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "sl_data.csv", numLinesToSkip=1)
+    void test02Positive(String username, String password) {
+        open("https://slqamsk.github.io/cases/slflights/v01/");
+        $x("//input[@name='username']").setValue(username);
+        sleep(3_000);
+        $x("//input[@name='password']").setValue(password);
+        sleep(3_000);
+
+
     }
 
 }

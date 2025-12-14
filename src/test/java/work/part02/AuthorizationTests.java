@@ -1,6 +1,7 @@
 package work.part02;
 
 import com.codeborne.selenide.WebElementCondition;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
@@ -17,6 +18,7 @@ import static com.codeborne.selenide.Selenide.*;
             $(By.id("message")).shouldHave(text("Вход в систему выполнен успешно! Загрузка..."));
             $(By.id("departureDate")).sendKeys("08.12.2025");
         }
+        @Tag("SmokeTest")
         @Test
         public void test02LoginWrongPassword() {
             open("https://slqamsk.github.io/cases/slflights/v01/");
