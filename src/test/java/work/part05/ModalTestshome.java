@@ -1,10 +1,8 @@
-package work.part03;
+package work.part05;
 
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.Test;
-
 import java.time.Duration;
-
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
