@@ -1,5 +1,3 @@
-package demo.part05;
-
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import org.junit.jupiter.api.*;

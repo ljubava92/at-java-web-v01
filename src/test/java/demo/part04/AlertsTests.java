@@ -3,6 +3,9 @@ package demo.part04;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Alert;
+
+import java.time.Duration;
+
 import static com.codeborne.selenide.Selenide.*;
 public class AlertsTests {
     @Test
@@ -15,6 +18,8 @@ public class AlertsTests {
                 .alert()
                 .accept();
         sleep(2_000);
+        switchTo().defaultContent();
+        $x("//a[text()='Home']").click();
     }
     @Test
     void test02ConfirmOk() {
