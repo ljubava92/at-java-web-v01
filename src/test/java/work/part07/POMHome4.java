@@ -43,6 +43,7 @@ public class POMHome4 {
         SearchPage searchPage = new SearchPage();
         searchPage.search("01.12.2025");
         searchPage.isDateInOld();
+        sleep(2_000);
     }
 
     // Проверить вход заблокированного пользователя (locked_out_user)
@@ -51,7 +52,9 @@ public class POMHome4 {
         LoginPage loginPage = new LoginPage();
         loginPage.login("locked_out_user", "lock_pass2");
         loginPage.isLoginBlock();
+        sleep(2_000);
     }
+
     // Проверить нажатие кнопки Войти на пустой форме авторизации
     @Test
     void testButton() {
